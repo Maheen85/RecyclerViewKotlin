@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RecyclerViewKotlin</string>
+    <string name="star">A Blue Star</string>
+    <string name="happy_face">A Yellow Happy Face</string>
+    <string name="graduation_hat">Black Graduation Hat</string>
+    <string name="flower">Pink Flower</string>
+</resources>
