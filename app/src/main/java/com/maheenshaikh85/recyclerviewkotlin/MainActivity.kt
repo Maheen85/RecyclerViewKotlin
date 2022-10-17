@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
@@ -43,6 +44,23 @@ class MainActivity : AppCompatActivity() {
 
         )
 
+        /*
+        imageId = arrayOf(
+            R.drawable.happy_face,
+            R.drawable.graduation_hat,
+            R.drawable.flower,
+            R.drawable.star
+        )
+
+        heading = arrayOf(
+            "A Yellow Happy Face",
+            "A Black Graduation Hat",
+            "A Pink Flower",
+            "A Blue Star"
+
+        )
+
+        */
 
 
 
@@ -126,7 +144,20 @@ class MainActivity : AppCompatActivity() {
         tempArrayList.addAll(newArrayList)
 
         newRecyclerview.adapter = MyAdapter(tempArrayList)
+
+        itemTouchHelper.attachToRecyclerView(newRecyclerview)
     }
+
+    val swipeToDeleteCallBack = object : SwipeToDeleteCallback(){
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            val position = viewHolder.adapterPosition
+            tempArrayList.removeAt(position)
+            newRecyclerview.adapter?.notifyItemRemoved(position)
+        }
+    }
+
+    val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallBack)
+
 
 
 
